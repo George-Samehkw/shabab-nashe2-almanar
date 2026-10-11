@@ -1,6 +1,6 @@
 # Shabab Nashe2 Al Manar — website draft
 
-The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Open `index.html` in a browser to view it. It is self-contained: its styling, interactions, and logo are embedded, so the main page does not need external assets to render.
+The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Serve the project through Netlify or another web server to use every feature. The styling, interactions, and logos are local; the full Bible text is bundled in `assets/bible/bible-data.json`. Opening `index.html` directly as a `file://` URL can block the browser from loading that JSON because of browser security rules.
 
 ## Included
 
@@ -16,7 +16,8 @@ The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Open `i
 - Team cards for Maged (Head Leader) and Andrew (Worship Leader), with role-based intro copy and no photos.
 - Podcast episode cards for Andy & Peter (“The Fake Me”) and Nana & Gaby (“When Nobody Understands Me”), each linked to the reel assigned by the ministry.
 - Dark Box question form using the supplied Formspree endpoint. It has no name/email field; it explains that authorized ministry leaders can read questions and selected questions may be answered publicly without names.
-- Weekly challenge, reflection prompts, message-notes placeholder, prayer topics, and a 7-day Bible reading plan. Reading progress is stored locally in the visitor's browser.
+- Weekly challenge, reflection prompts, message-notes placeholder, prayer topics, and a 7-day Bible reading plan. Reading-plan progress is stored locally in the visitor's browser.
+- Full Bible reader: all 66 books in Arabic Van Dyck (AVD/VDV) and the World English Bible (WEB), both listed as public domain by eBible.org. Readers can browse books/chapters, display Arabic and English together or separately, and search in either language. The 66-book Protestant canon is included; Deuterocanonical/Apocryphal books are not. Text is bundled locally in `assets/bible/bible-data.json`; the Bible reader makes no Bible-text API calls.
 - Student and bus registration buttons linking to the supplied Google Forms, plus an FAQ listing the bus service areas (Hawally, Salmiya, Jabriya, Shaab, and Salwa). Form responses are not shown on the website.
 - Footer credit: “The creations of George Sameh.”
 - A designed “Coming Soon” moments area; no placeholder photos or empty gallery boxes.
@@ -37,13 +38,17 @@ The chat is deliberately unavailable until a ministry leader completes these ste
 
 ## Before publishing
 
-- Review the draft mission and vision text, team introductions, Arabic wording, and the age range (the current registration forms list Grades 6–8).
+- Review the draft mission and vision text, team introductions, Arabic wording, the Bible canon/translation choices, and the age range (the current registration forms list Grades 6–8). The WEB and Arabic Van Dyck public-domain/source links are included in the Bible reader.
 - Review the podcast and Friday Q&A links to confirm each reel opens the intended clip (Instagram video contents could not be previewed here).
 - Ask the ministry to confirm the Formspree notification/inbox settings. No test submission was sent. The Dark Box avoids requesting a name or email, but the form provider may still process technical metadata; do not promise absolute anonymity.
 - Before enabling QR attendance or individual streaks, choose a private attendance system, decide who can view records, and get any required parent/guardian approval. The page currently explains the planned flow but does not record attendance.
 - Registration forms request personal and family information. Keep access to their response sheets restricted to authorized ministry organizers and encourage a parent/guardian to complete them.
 - Add approved event photos only after receiving permission from the people pictured and, for minors, their parent/guardian.
 
+## Publishing the full Bible reader
+
+To publish the reader through the existing GitHub-to-Netlify setup, commit the updated root `index.html` and the new `assets/bible/bible-data.json` file while preserving that exact folder path. `scripts/build-site.js` already copies the `assets/` folder into `dist/`, so no Netlify function or API key is needed for Bible reading/search. Netlify will rebuild after the GitHub commit if automatic deploys are enabled. When testing on your computer, use a web server; directly opening `index.html` as `file://` can block the Bible JSON request.
+
 ## Updating content
 
-`index.html` contains all site content and code. Search for the section heading to edit regular copy. The daily verse list is in the `verses` array near the end of the file; the weekly prompts are in `challenges`; the reading plan is in `readingPlan`. Update registration URLs, team details, meeting information, and Instagram links in the matching sections as needed.
+`index.html` contains the site layout and code. Search for the section heading to edit regular copy. The full Bible text is in `assets/bible/bible-data.json`; if replacing it, keep the same schema and file path so the reader continues to work. The daily verse list is in the `verses` array near the end of `index.html`; the weekly prompts are in `challenges`; the short reading plan is in `readingPlan`. Update registration URLs, team details, meeting information, and Instagram links in the matching sections as needed.

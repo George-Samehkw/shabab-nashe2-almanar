@@ -294,6 +294,74 @@
     .honeypot { display: none !important; }
     
 
+    /* Full bilingual Bible reader */
+    .bible-section { padding: 82px 0; background: linear-gradient(180deg, #efe7dd, #f7f1e9 48%, #eee8df); }
+    .bible-reader-card { overflow: hidden; padding: clamp(18px, 3.5vw, 34px); border: 1px solid #dfd2c5; border-radius: 30px; background: rgba(255,250,243,.94); box-shadow: 0 20px 55px rgba(53,38,25,.09); }
+    .bible-intro { display: grid; grid-template-columns: 52px minmax(0,1fr); gap: 15px; align-items: start; margin-bottom: 19px; }
+    .bible-intro-symbol { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 16px; color: #9a613e; background: #f1e2d4; font-size: 22px; }
+    .bible-intro-copy strong { display: block; margin: 1px 0 4px; font-size: 17px; }
+    .bible-intro-copy p { margin: 0; color: var(--muted); font-size: 13px; }
+    .bible-edition-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 22px; }
+    .bible-edition { display: flex; align-items: center; gap: 11px; min-height: 64px; padding: 11px 13px; border: 1px solid #e9ded3; border-radius: 16px; background: #fffdf9; }
+    .bible-edition-code { width: 36px; height: 36px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 12px; color: #fff8ef; background: #392b21; font-size: 11px; font-weight: 950; letter-spacing: .06em; direction: ltr; }
+    .bible-edition strong, .bible-edition small { display: block; }
+    .bible-edition strong { color: #3a2e24; font-size: 13px; }
+    .bible-edition small { margin-top: 2px; color: #807266; font-size: 10px; }
+    .bible-toolbar { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(250px,.8fr); gap: 14px; align-items: end; padding: 17px; border: 1px solid #e7dbcf; border-radius: 20px; background: #f7f1e9; }
+    .bible-selectors { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(100px,.7fr); gap: 11px; }
+    .bible-field { display: grid; gap: 6px; min-width: 0; color: #5c5046; font-size: 11px; font-weight: 850; }
+    .bible-field select { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #d9cabb; border-radius: 12px; color: var(--ink); background: #fffdf9; font-size: 13px; }
+    .bible-field select:disabled, .bible-search-row input:disabled { opacity: .65; cursor: wait; }
+    .bible-view-wrap { display: grid; gap: 6px; }
+    .bible-control-label { color: #5c5046; font-size: 11px; font-weight: 850; }
+    .bible-view-switch { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; padding: 4px; border: 1px solid #ded0c1; border-radius: 13px; background: #ece2d7; }
+    .bible-view-switch button { min-height: 35px; padding: 5px 8px; border: 0; border-radius: 10px; color: #5f5145; background: transparent; cursor: pointer; font-size: 11px; font-weight: 850; }
+    .bible-view-switch button[aria-pressed="true"] { color: #fff9f1; background: #33271f; box-shadow: 0 3px 9px rgba(38,28,20,.15); }
+    .bible-view-switch button:disabled { opacity: .6; cursor: wait; }
+    .bible-search-box { margin-top: 14px; padding: 17px; border: 1px solid #e8ddd2; border-radius: 18px; background: #fffdf9; }
+    .bible-search-box > label { display: block; margin-bottom: 7px; color: #4d4035; font-size: 12px; font-weight: 900; }
+    .bible-search-row { display: flex; gap: 8px; }
+    .bible-search-row input { flex: 1; min-width: 0; min-height: 45px; padding: 9px 13px; border: 1px solid #d9cabb; border-radius: 13px; color: var(--ink); background: #fff; outline: none; }
+    .bible-search-row input:focus { border-color: #a87752; box-shadow: 0 0 0 3px rgba(189,129,85,.13); }
+    .bible-search-row .button { min-height: 45px; padding: 9px 16px; font-size: 12px; }
+    .bible-search-hint { margin: 7px 0 0; color: #82766c; font-size: 10px; }
+    .bible-search-status { min-height: 0; margin: 8px 0 0; color: #75685d; font-size: 11px; font-weight: 750; }
+    .bible-search-results { display: grid; gap: 8px; max-height: 340px; overflow: auto; margin-top: 9px; padding: 3px; scrollbar-width: thin; }
+    .bible-search-results[hidden], .bible-retry[hidden] { display: none !important; }
+    .bible-search-result { display: grid; gap: 5px; width: 100%; padding: 12px 14px; border: 1px solid #e7dbcf; border-radius: 14px; color: var(--ink); background: #faf5ee; cursor: pointer; text-align: start; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+    .bible-search-result:hover { border-color: #c89b78; background: #f5e9dc; transform: translateY(-1px); }
+    .bible-search-result-ref { color: #956342; font-size: 11px; font-weight: 950; }
+    .bible-search-result-ar, .bible-search-result-en { font-size: 12px; line-height: 1.65; }
+    .bible-load-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 35px; margin: 9px 2px 2px; }
+    .bible-load-status, .bible-reading-status { margin: 0; color: #76695e; font-size: 11px; }
+    .bible-load-status[data-state="error"] { color: #a44437; font-weight: 800; }
+    .bible-retry { min-height: 34px; padding: 6px 12px; border: 1px solid #d9cabb; border-radius: 999px; color: #513d2d; background: #fffaf3; cursor: pointer; font-size: 11px; font-weight: 850; }
+    .bible-chapter-nav { display: grid; grid-template-columns: minmax(92px,1fr) minmax(0,2fr) minmax(92px,1fr); gap: 10px; align-items: center; margin: 15px 0 11px; padding: 14px 0 11px; border-top: 1px solid #e8ddd2; }
+    .bible-chapter-nav button { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 7px 12px; border: 1px solid #ded0c1; border-radius: 12px; color: #513d2d; background: #fffdf9; cursor: pointer; font-size: 11px; font-weight: 850; }
+    .bible-chapter-nav button:hover:not(:disabled) { border-color: #bd8155; background: #f4e7da; }
+    .bible-chapter-nav button:disabled { opacity: .55; cursor: wait; }
+    .bible-chapter-nav .bible-chapter-heading { min-width: 0; text-align: center; }
+    .bible-chapter-heading strong { display: block; color: #47372a; font-size: 13px; }
+    .bible-chapter-heading h3 { margin: 2px 0 0; color: #8d5d3d; font-size: 20px; line-height: 1.25; }
+    .bible-reading-status { min-height: 18px; margin: 0 0 11px; text-align: center; }
+    .bible-content { --bible-reader-font: 16px; }
+    .bible-content[data-view="ar"] .bible-lang-en, .bible-content[data-view="en"] .bible-lang-ar { display: none !important; }
+    .bible-verses { display: grid; gap: 8px; }
+    .bible-verse { display: grid; grid-template-columns: 37px minmax(0,1fr); gap: 12px; align-items: start; padding: 14px; border: 1px solid #eee4d9; border-radius: 16px; background: #fffdf9; scroll-margin-top: 115px; transition: border-color .2s ease, background .2s ease, box-shadow .2s ease; }
+    .bible-verse.highlight { border-color: #bd8155; background: #fff2e3; box-shadow: 0 0 0 3px rgba(189,129,85,.14); }
+    .bible-verse-number { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px; color: #8b5d3d; background: #f3e6d9; font-size: 11px; font-weight: 950; font-variant-numeric: tabular-nums; }
+    .bible-verse-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; min-width: 0; }
+    .bible-translation-text { min-width: 0; padding: 8px 10px; border-radius: 11px; }
+    .bible-translation-text.bible-lang-ar { direction: rtl; text-align: right; background: #f8f2eb; }
+    .bible-translation-text.bible-lang-en { direction: ltr; text-align: left; background: #f2f5f0; }
+    .bible-translation-label { display: block; margin-bottom: 3px; color: #8d7763; font-size: 9px; font-weight: 900; letter-spacing: .04em; }
+    .bible-translation-text p { margin: 0; color: #383029; font-size: var(--bible-reader-font); line-height: 1.9; overflow-wrap: anywhere; }
+    .bible-translation-text.bible-lang-ar p { line-height: 2.05; }
+    .bible-translation-missing { border: 1px dashed #e2d6ca; background: transparent !important; }
+    .bible-translation-missing p { color: #92877c; font-size: 10px; font-style: italic; }
+    .bible-source-note { margin: 16px 2px 0; padding-top: 13px; border-top: 1px solid #e8ddd2; color: #82766c; font-size: 10px; line-height: 1.8; }
+    .bible-source-note a { color: #815331; font-weight: 800; text-underline-offset: 2px; }
+
     /* Growth resources */
     .resource-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 15px; }
     .resource-card { padding: 23px; }
@@ -363,11 +431,11 @@
     .back-top { color: var(--copper-light) !important; text-decoration: none; font-weight: 850; }
 
     /* Nashe AI chat */
-    .ai-launcher { position: fixed; z-index: 100; inset-inline-start: 22px; bottom: 20px; display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 17px 8px 10px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: #fff8ef; background: #211a16; box-shadow: 0 14px 38px rgba(25,17,12,.28); cursor: pointer; font-size: 13px; font-weight: 900; transition: transform .2s ease, box-shadow .2s ease; }
+    .ai-launcher { position: fixed; z-index: 100; left: 22px; right: auto; bottom: 20px; display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 17px 8px 10px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: #fff8ef; background: #211a16; box-shadow: 0 14px 38px rgba(25,17,12,.28); cursor: pointer; font-size: 13px; font-weight: 900; transition: transform .2s ease, box-shadow .2s ease; }
     .ai-launcher:hover { transform: translateY(-3px); box-shadow: 0 18px 42px rgba(25,17,12,.34); }
     .ai-launcher-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #2a2119; background: var(--copper-light); }
     .ai-launcher-icon svg { width: 20px; height: 20px; }
-    .ai-panel { position: fixed; z-index: 101; inset-inline-start: 22px; bottom: 86px; width: min(400px, calc(100vw - 28px)); height: min(620px, calc(100dvh - 112px)); min-height: 400px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(91,68,49,.2); border-radius: 25px; color: var(--ink); background: var(--paper); box-shadow: 0 26px 80px rgba(29,19,12,.25); }
+    .ai-panel { position: fixed; z-index: 101; left: 22px; right: auto; bottom: 86px; width: min(400px, calc(100vw - 28px)); height: min(620px, calc(100dvh - 112px)); min-height: 400px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(91,68,49,.2); border-radius: 25px; color: var(--ink); background: var(--paper); box-shadow: 0 26px 80px rgba(29,19,12,.25); }
     .ai-panel[hidden] { display: none !important; }
     .ai-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 17px 18px; color: var(--white); background: linear-gradient(120deg, #30241c, #191613); }
     .ai-panel-brand { display: flex; align-items: center; gap: 11px; }
@@ -438,6 +506,20 @@
       .quiet-emblem svg { width: 45px; height: 45px; }
       .quiet-copy .eyebrow { justify-content: center; }
     }
+    @media (max-width: 980px) {
+      .bible-toolbar { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 780px) {
+      .bible-verse-pair { grid-template-columns: 1fr; }
+      .bible-reader-card { padding: 16px; }
+    }
+    @media (max-width: 880px) {
+      .nav-links { display: none; position: absolute; top: calc(100% + 1px); inset-inline: 0; padding: 14px 20px 20px; background: rgba(248,243,235,.98); border-bottom: 1px solid var(--line); box-shadow: 0 16px 30px rgba(0,0,0,.08); }
+      .nav-links.open { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+      .nav-links a { padding: 10px 8px; border-radius: 10px; font-size: 14px; }
+      .nav-links a:hover { background: #eee5da; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+    }
     @media (max-width: 600px) {
       .container { width: min(var(--max), calc(100% - 28px)); }
       .brand-mark { width: 34px; height: 34px; }
@@ -485,8 +567,8 @@
       .moments-art { min-height: 240px; }
       .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
       .footer-links { gap: 12px; }
-      .ai-launcher { inset-inline-start: 14px; bottom: 13px; min-height: 50px; }
-      .ai-panel { inset-inline-start: 10px; bottom: 73px; width: calc(100vw - 20px); height: min(620px, calc(100dvh - 88px)); }
+      .ai-launcher { left: 14px; right: auto; bottom: 13px; min-height: 50px; }
+      .ai-panel { left: 10px; right: auto; bottom: 73px; width: calc(100vw - 20px); height: min(620px, calc(100dvh - 88px)); }
     }
     @media (max-width: 380px) {
       .topbar { gap: 6px; }
@@ -519,6 +601,7 @@
         <a href="#meetings"><span class="t-ar">اجتماع الجمعة</span><span class="t-en">Friday</span></a>
         <a href="#streaks"><span class="t-ar">سلسلة ناشئ</span><span class="t-en">Streaks</span></a>
         <a href="#podcast"><span class="t-ar">البودكاست</span><span class="t-en">Podcast</span></a>
+        <a href="#bible-reader"><span class="t-ar">الكتاب المقدس</span><span class="t-en">Bible</span></a>
         <a href="#dark-box"><span class="t-ar">الصندوق الأسود</span><span class="t-en">Dark Box</span></a>
         <a href="#resources"><span class="t-ar">نكبر سوا</span><span class="t-en">Grow together</span></a>
         <a href="#register"><span class="t-ar">التسجيل</span><span class="t-en">Register</span></a>
@@ -587,6 +670,74 @@
             <a class="button button-ghost" href="#quiet-moment"><svg viewBox="0 0 24 24" fill="none"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 4v4m-2-2h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="t-ar">خد لحظة هدوء</span><span class="t-en">Take a quiet moment</span></a>
           </div>
           <p class="verse-credit"><span class="t-ar">آيات الكتاب المقدس بتظهر حسب توقيت الكويت. نص الآية من ترجمة فاندايك العربية وWorld English Bible.</span><span class="t-en">The verse changes daily in Kuwait time. Scripture wording: Arabic Van Dyck and the World English Bible.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bible-section" id="bible-reader">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow"><span class="t-ar">كلمة ربنا بين إيدينا</span><span class="t-en">Scripture, side by side</span></span>
+          <h2><span class="t-ar">اقرأ الكتاب المقدس</span><span class="t-en">Read the Bible</span></h2>
+          <p><span class="t-ar">اختار أي سفر وإصحاح، واقرأ بالعربي والإنجليزي أو باللغة اللي تريحك.</span><span class="t-en">Choose any book and chapter, then read in Arabic, English, or both side by side.</span></p>
+        </div>
+        <div class="bible-reader-card">
+          <div class="bible-intro">
+            <div class="bible-intro-symbol" aria-hidden="true">✦</div>
+            <div class="bible-intro-copy">
+              <strong><span class="t-ar">الكتاب كله — من التكوين للرؤيا</span><span class="t-en">All 66 books—from Genesis to Revelation</span></strong>
+              <p><span class="t-ar">النص الكامل متضمّن في الموقع؛ مفيش حساب أو تسجيل مطلوب. مكان قراءتك بيتحفظ على جهازك بس.</span><span class="t-en">The complete text is bundled with the site—no account or sign-in. Your reading place stays on this device only.</span></p>
+            </div>
+          </div>
+          <div class="bible-edition-strip" aria-label="Bible translations">
+            <div class="bible-edition" lang="ar" dir="rtl"><span class="bible-edition-code">AR</span><div><strong><span class="t-ar">فاندايك العربية</span><span class="t-en">Arabic Van Dyck</span></strong><small><span class="t-ar">نصّ متاح للملك العام</span><span class="t-en">Public-domain text</span></small></div></div>
+            <div class="bible-edition" lang="en" dir="ltr"><span class="bible-edition-code">EN</span><div><strong>World English Bible (WEB)</strong><small><span class="t-ar">نصّ متاح للملك العام</span><span class="t-en">Public-domain text</span></small></div></div>
+          </div>
+          <div class="bible-toolbar">
+            <div class="bible-selectors">
+              <label class="bible-field" for="bible-book"><span><span class="t-ar">السفر</span><span class="t-en">Book</span></span><select id="bible-book" disabled aria-label="Book"><option>...</option></select></label>
+              <label class="bible-field" for="bible-chapter"><span><span class="t-ar">الإصحاح</span><span class="t-en">Chapter</span></span><select id="bible-chapter" disabled aria-label="Chapter"><option>...</option></select></label>
+            </div>
+            <div class="bible-view-wrap">
+              <span class="bible-control-label"><span class="t-ar">طريقة العرض</span><span class="t-en">Show</span></span>
+              <div class="bible-view-switch" id="bible-view-switch" role="group" aria-label="Bible display language">
+                <button type="button" data-bible-view="both" aria-pressed="true" disabled><span class="t-ar">الاتنين</span><span class="t-en">Both</span></button>
+                <button type="button" data-bible-view="ar" aria-pressed="false" disabled><span class="t-ar">عربي</span><span class="t-en">Arabic</span></button>
+                <button type="button" data-bible-view="en" aria-pressed="false" disabled><span class="t-ar">إنجليزي</span><span class="t-en">English</span></button>
+              </div>
+            </div>
+          </div>
+          <form class="bible-search-box" id="bible-search-form">
+            <label for="bible-search-query"><span class="t-ar">ابحث في الكتاب المقدس</span><span class="t-en">Search the Bible</span></label>
+            <div class="bible-search-row">
+              <input id="bible-search-query" type="search" minlength="2" maxlength="70" autocomplete="off" disabled data-placeholder-ar="اكتب كلمة بالعربي أو بالإنجليزي…" data-placeholder-en="Type a word in English or Arabic…" placeholder="اكتب كلمة بالعربي أو بالإنجليزي…">
+              <button class="button button-dark" id="bible-search-submit" type="submit" disabled><span class="t-ar">ابحث</span><span class="t-en">Search</span></button>
+              <button class="bible-retry" id="bible-search-clear" type="button" hidden><span class="t-ar">مسح</span><span class="t-en">Clear</span></button>
+            </div>
+            <p class="bible-search-hint"><span class="t-ar">اكتب بالعربي أو الإنجليزي، ومن غير تشكيل عادي.</span><span class="t-en">Search in Arabic or English; Arabic diacritics are optional.</span></p>
+            <p class="bible-search-status" id="bible-search-status" role="status" aria-live="polite"></p>
+            <div class="bible-search-results" id="bible-search-results" aria-label="Bible search results" hidden></div>
+          </form>
+          <div class="bible-load-row">
+            <p class="bible-load-status" id="bible-load-status" role="status" aria-live="polite"><span class="t-ar">النص الكامل هيتحمّل لما تفتح قسم القراءة.</span><span class="t-en">The full text loads when you open this reader.</span></p>
+            <button class="bible-retry" id="bible-retry" type="button" hidden><span class="t-ar">جرّب تاني</span><span class="t-en">Try again</span></button>
+          </div>
+          <div class="bible-chapter-nav">
+            <button id="bible-previous" type="button" disabled aria-label="Previous chapter"><span aria-hidden="true">‹</span><span class="t-ar">السابق</span><span class="t-en">Previous</span></button>
+            <div class="bible-chapter-heading">
+              <strong id="bible-book-title"><span class="t-ar">اختار سفر</span><span class="t-en">Choose a book</span></strong>
+              <h3 id="bible-chapter-title">—</h3>
+            </div>
+            <button id="bible-next" type="button" disabled aria-label="Next chapter"><span class="t-ar">التالي</span><span class="t-en">Next</span><span aria-hidden="true">›</span></button>
+          </div>
+          <p class="bible-reading-status" id="bible-reading-status" aria-live="polite"></p>
+          <div class="bible-content" id="bible-content" data-view="both">
+            <div class="bible-verses" id="bible-verses"></div>
+          </div>
+          <p class="bible-source-note">
+            <span class="t-ar">النسختان من الملك العام: <a href="https://ebible.org/Scriptures/details.php?id=arb-vd" target="_blank" rel="noopener">فاندايك العربية</a> و<a href="https://ebible.org/Scriptures/details.php?id=engwebp" target="_blank" rel="noopener">World English Bible</a>. يشمل القارئ ٦٦ سفرًا بحسب القانون البروتستانتي؛ الأسفار القانونية الثانية/الأبوكريفا مش موجودة في النسختين هنا. قراءة الكتاب والبحث بيشتغلوا من النصّ المرفق بالموقع.</span>
+            <span class="t-en">Both editions are public domain: <a href="https://ebible.org/Scriptures/details.php?id=arb-vd" target="_blank" rel="noopener">Arabic Van Dyck</a> and the <a href="https://ebible.org/Scriptures/details.php?id=engwebp" target="_blank" rel="noopener">World English Bible</a>. This reader contains the 66-book Protestant canon; Deuterocanonical/Apocryphal books are not included in these editions. Reading and search use text bundled with this site.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -1226,6 +1377,417 @@
       document.getElementById('footer-year').textContent = new Intl.DateTimeFormat('en', { timeZone: 'Asia/Kuwait', year: 'numeric' }).format(new Date());
       applyLanguage('ar');
       window.setInterval(() => { renderNextFriday(); renderCountdown(); }, 1000);
+    })();
+  </script>
+  <script>
+    (() => {
+      const section = document.getElementById('bible-reader');
+      const bookSelect = document.getElementById('bible-book');
+      const chapterSelect = document.getElementById('bible-chapter');
+      const loadStatus = document.getElementById('bible-load-status');
+      const retryButton = document.getElementById('bible-retry');
+      const previousButton = document.getElementById('bible-previous');
+      const nextButton = document.getElementById('bible-next');
+      const bookTitle = document.getElementById('bible-book-title');
+      const chapterTitle = document.getElementById('bible-chapter-title');
+      const readingStatus = document.getElementById('bible-reading-status');
+      const contentBox = document.getElementById('bible-content');
+      const versesBox = document.getElementById('bible-verses');
+      const viewButtons = [...document.querySelectorAll('[data-bible-view]')];
+      const searchForm = document.getElementById('bible-search-form');
+      const searchInput = document.getElementById('bible-search-query');
+      const searchSubmit = document.getElementById('bible-search-submit');
+      const searchClear = document.getElementById('bible-search-clear');
+      const searchStatus = document.getElementById('bible-search-status');
+      const searchResultsBox = document.getElementById('bible-search-results');
+      const numberFormatters = {
+        ar: new Intl.NumberFormat('ar-KW', { useGrouping: false }),
+        en: new Intl.NumberFormat('en', { useGrouping: false })
+      };
+      const storageKey = 'nashe2BibleReaderV1';
+      let bible = null;
+      let loadPromise = null;
+      let bookId = 'GEN';
+      let chapterNumber = 1;
+      let viewMode = 'both';
+      let lastSearchResults = [];
+      let lastSearchWasLimited = false;
+
+      function language() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'ar';
+      }
+      function copy(ar, en) {
+        return language() === 'ar' ? ar : en;
+      }
+      function number(value) {
+        return numberFormatters[language()].format(value);
+      }
+      function setStatus(element, state, arText, enText) {
+        element.dataset.state = state || '';
+        element.textContent = copy(arText, enText);
+      }
+      function setControlsDisabled(disabled) {
+        bookSelect.disabled = disabled;
+        chapterSelect.disabled = disabled;
+        searchInput.disabled = disabled;
+        searchSubmit.disabled = disabled;
+        viewButtons.forEach((button) => { button.disabled = disabled; });
+        previousButton.disabled = disabled;
+        nextButton.disabled = disabled;
+      }
+      function currentBook() {
+        return bible && bible.books.find((book) => book.id === bookId);
+      }
+      function savePreferences() {
+        try { localStorage.setItem(storageKey, JSON.stringify({ bookId, chapterNumber, viewMode })); }
+        catch (error) { /* Private browsing or storage restrictions: reading still works. */ }
+      }
+      function restorePreferences() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+          if (saved && typeof saved === 'object') {
+            if (typeof saved.bookId === 'string') bookId = saved.bookId;
+            if (Number.isInteger(saved.chapterNumber) && saved.chapterNumber > 0) chapterNumber = saved.chapterNumber;
+            if (['both', 'ar', 'en'].includes(saved.viewMode)) viewMode = saved.viewMode;
+          }
+        } catch (error) { /* Use the first chapter when local storage is unavailable. */ }
+      }
+      function updateBookOptions() {
+        const selected = bookId;
+        const fragment = document.createDocumentFragment();
+        bible.books.forEach((book) => {
+          const option = document.createElement('option');
+          option.value = book.id;
+          option.textContent = language() === 'ar'
+            ? `${book.arName} · ${book.enName}`
+            : `${book.enName} · ${book.arName}`;
+          fragment.appendChild(option);
+        });
+        bookSelect.replaceChildren(fragment);
+        if (!bible.books.some((book) => book.id === selected)) bookId = bible.books[0].id;
+        bookSelect.value = bookId;
+      }
+      function updateChapterOptions() {
+        const book = currentBook();
+        if (!book) return;
+        const count = book.chapters.length;
+        chapterNumber = Math.min(Math.max(1, chapterNumber), count);
+        const fragment = document.createDocumentFragment();
+        for (let i = 1; i <= count; i++) {
+          const option = document.createElement('option');
+          option.value = String(i);
+          option.textContent = `${copy('الإصحاح', 'Chapter')} ${number(i)}`;
+          fragment.appendChild(option);
+        }
+        chapterSelect.replaceChildren(fragment);
+        chapterSelect.value = String(chapterNumber);
+      }
+      function updateViewButtons() {
+        contentBox.dataset.view = viewMode;
+        viewButtons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.bibleView === viewMode));
+        });
+      }
+      function updateChapterHeadings() {
+        const book = currentBook();
+        if (!book) return;
+        bookTitle.textContent = language() === 'ar' ? book.arName : book.enName;
+        chapterTitle.textContent = language() === 'ar'
+          ? `الإصحاح ${number(chapterNumber)}`
+          : `Chapter ${number(chapterNumber)}`;
+        previousButton.setAttribute('aria-label', copy('الإصحاح السابق', 'Previous chapter'));
+        nextButton.setAttribute('aria-label', copy('الإصحاح التالي', 'Next chapter'));
+        searchResultsBox.setAttribute('aria-label', copy('نتائج البحث في الكتاب المقدس', 'Bible search results'));
+      }
+      function renderChapter() {
+        const book = currentBook();
+        if (!book) return;
+        const chapterRows = book.chapters[chapterNumber - 1] || [];
+        const fragment = document.createDocumentFragment();
+        chapterRows.forEach(([verseNumber, englishText, arabicText]) => {
+          if (!englishText && !arabicText) return;
+          const article = document.createElement('article');
+          article.className = 'bible-verse';
+          article.id = `bible-verse-${verseNumber}`;
+          const numberBadge = document.createElement('span');
+          numberBadge.className = 'bible-verse-number';
+          numberBadge.textContent = number(verseNumber);
+          numberBadge.setAttribute('aria-label', copy(`الآية ${number(verseNumber)}`, `Verse ${verseNumber}`));
+          const pair = document.createElement('div');
+          pair.className = 'bible-verse-pair';
+          const arabic = document.createElement('div');
+          arabic.className = 'bible-translation-text bible-lang-ar' + (arabicText ? '' : ' bible-translation-missing');
+          arabic.lang = 'ar';
+          arabic.dir = 'rtl';
+          const arabicLabel = document.createElement('span');
+          arabicLabel.className = 'bible-translation-label';
+          arabicLabel.textContent = 'فاندايك';
+          const arabicParagraph = document.createElement('p');
+          arabicParagraph.textContent = arabicText || 'يختلف ترقيم الآيات في هذه النسخة عند هذا المرجع.';
+          arabic.append(arabicLabel, arabicParagraph);
+          pair.appendChild(arabic);
+          const english = document.createElement('div');
+          english.className = 'bible-translation-text bible-lang-en' + (englishText ? '' : ' bible-translation-missing');
+          english.lang = 'en';
+          english.dir = 'ltr';
+          const englishLabel = document.createElement('span');
+          englishLabel.className = 'bible-translation-label';
+          englishLabel.textContent = 'WEB';
+          const englishParagraph = document.createElement('p');
+          englishParagraph.textContent = englishText || 'Verse numbering differs in this edition at this reference.';
+          english.append(englishLabel, englishParagraph);
+          pair.appendChild(english);
+          article.append(numberBadge, pair);
+          fragment.appendChild(article);
+        });
+        versesBox.replaceChildren(fragment);
+        updateChapterHeadings();
+        updateViewButtons();
+        readingStatus.textContent = copy(
+          `الإصحاح ${number(chapterNumber)} من ${book.arName} — ${chapterRows.length} آية`,
+          `${book.enName} ${chapterNumber} — ${chapterRows.length} verses`
+        );
+        previousButton.disabled = false;
+        nextButton.disabled = false;
+        savePreferences();
+      }
+      function showChapter(nextBookId, nextChapter) {
+        bookId = nextBookId;
+        chapterNumber = nextChapter;
+        updateBookOptions();
+        updateChapterOptions();
+        renderChapter();
+      }
+      function moveChapter(direction) {
+        const index = bible.books.findIndex((book) => book.id === bookId);
+        let nextBook = bible.books[index];
+        let nextChapter = chapterNumber + direction;
+        if (nextChapter < 1) {
+          const previousBook = bible.books[(index - 1 + bible.books.length) % bible.books.length];
+          nextBook = previousBook;
+          nextChapter = previousBook.chapters.length;
+        } else if (nextChapter > nextBook.chapters.length) {
+          nextBook = bible.books[(index + 1) % bible.books.length];
+          nextChapter = 1;
+        }
+        showChapter(nextBook.id, nextChapter);
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function normalizeForSearch(value) {
+        return String(value || '')
+          .normalize('NFKD')
+          .toLocaleLowerCase()
+          .replace(/[\u0640\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[\s\p{P}\p{S}]+/gu, ' ')
+          .trim();
+      }
+      function shortText(value, max = 185) {
+        const text = String(value || '').trim();
+        return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+      }
+      function renderSearchResults() {
+        searchResultsBox.replaceChildren();
+        lastSearchResults.forEach((result) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'bible-search-result';
+          button.dataset.openBook = result.book.id;
+          button.dataset.openChapter = String(result.chapter);
+          button.dataset.openVerse = String(result.verse);
+          const ref = document.createElement('span');
+          ref.className = 'bible-search-result-ref';
+          ref.dir = language() === 'ar' ? 'rtl' : 'ltr';
+          ref.textContent = language() === 'ar'
+            ? `${result.book.arName} ${number(result.chapter)}:${number(result.verse)} · ${result.book.enName} ${result.chapter}:${result.verse}`
+            : `${result.book.enName} ${result.chapter}:${result.verse} · ${result.book.arName} ${number(result.chapter)}:${number(result.verse)}`;
+          const ar = document.createElement('span');
+          ar.className = 'bible-search-result-ar';
+          ar.lang = 'ar'; ar.dir = 'rtl'; ar.textContent = shortText(result.arabicText);
+          const en = document.createElement('span');
+          en.className = 'bible-search-result-en';
+          en.lang = 'en'; en.dir = 'ltr'; en.textContent = shortText(result.englishText);
+          button.append(ref);
+          if (result.arabicText) button.append(ar);
+          if (result.englishText) button.append(en);
+          searchResultsBox.appendChild(button);
+        });
+        searchResultsBox.hidden = lastSearchResults.length === 0;
+        if (!lastSearchResults.length) {
+          setStatus(searchStatus, 'empty', 'ما لقيناش نتيجة للكلمة دي. جرّب كلمة تانية.', 'No matches found. Try another word.');
+          return;
+        }
+        const count = lastSearchResults.length;
+        setStatus(searchStatus, '',
+          `لقينا ${number(count)} نتيجة${lastSearchWasLimited ? ' أو أكتر' : ''}. دوس على أي نتيجة عشان تفتح مكانها.`,
+          `Found ${count}${lastSearchWasLimited ? '+' : ''} match${count === 1 ? '' : 'es'}. Select one to open that verse.`
+        );
+      }
+      function clearSearchResults() {
+        lastSearchResults = [];
+        lastSearchWasLimited = false;
+        searchResultsBox.replaceChildren();
+        searchResultsBox.hidden = true;
+        searchStatus.textContent = '';
+      }
+      async function ensureLoaded() {
+        if (bible) return bible;
+        if (loadPromise) return loadPromise;
+        retryButton.hidden = true;
+        setStatus(loadStatus, 'loading', 'بنحمّل نص الكتاب المقدس…', 'Loading the Bible text…');
+        setControlsDisabled(true);
+        loadPromise = (async () => {
+          try {
+            const response = await fetch(new URL('./assets/bible/bible-data.json', document.baseURI), { cache: 'force-cache' });
+            if (!response.ok) throw new Error(`Bible data request failed (${response.status})`);
+            const result = await response.json();
+            if (result.schemaVersion !== 1 || !Array.isArray(result.books) || result.books.length !== 66) {
+              throw new Error('Bible data format is not supported');
+            }
+            bible = result;
+            restorePreferences();
+            updateBookOptions();
+            const book = currentBook() || bible.books[0];
+            if (!currentBook()) bookId = book.id;
+            chapterNumber = Math.min(chapterNumber, book.chapters.length);
+            updateChapterOptions();
+            setControlsDisabled(false);
+            updateViewButtons();
+            renderChapter();
+            setStatus(loadStatus, 'ready', 'الكتاب كامل جاهز للقراءة والبحث.', 'The full Bible is ready to read and search.');
+            retryButton.hidden = true;
+            return bible;
+          } catch (error) {
+            setControlsDisabled(true);
+            setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع من Netlify أو من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the site on Netlify or a web server, then try again.');
+            retryButton.hidden = false;
+            throw error;
+          } finally {
+            loadPromise = null;
+          }
+        })();
+        return loadPromise;
+      }
+      function searchBible(query) {
+        const arabicQuery = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/.test(query);
+        const normalizedQuery = normalizeForSearch(query);
+        const results = [];
+        let limited = false;
+        const maxResults = 30;
+        outer: for (const book of bible.books) {
+          for (let ci = 0; ci < book.chapters.length; ci++) {
+            const chapter = book.chapters[ci];
+            for (const row of chapter) {
+              const englishText = row[1] || '';
+              const arabicText = row[2] || '';
+              const haystack = arabicQuery ? arabicText : englishText;
+              if (normalizeForSearch(haystack).includes(normalizedQuery)) {
+                results.push({ book, chapter: ci + 1, verse: row[0], englishText, arabicText });
+                if (results.length > maxResults) { limited = true; break outer; }
+              }
+            }
+          }
+        }
+        lastSearchResults = limited ? results.slice(0, maxResults) : results;
+        lastSearchWasLimited = limited;
+        renderSearchResults();
+      }
+
+      bookSelect.addEventListener('change', () => {
+        if (!bible) return;
+        bookId = bookSelect.value;
+        chapterNumber = 1;
+        updateChapterOptions();
+        renderChapter();
+      });
+      chapterSelect.addEventListener('change', () => {
+        if (!bible) return;
+        chapterNumber = Number(chapterSelect.value) || 1;
+        renderChapter();
+      });
+      previousButton.addEventListener('click', () => bible && moveChapter(-1));
+      nextButton.addEventListener('click', () => bible && moveChapter(1));
+      viewButtons.forEach((button) => button.addEventListener('click', () => {
+        if (!bible) return;
+        viewMode = button.dataset.bibleView;
+        updateViewButtons();
+        savePreferences();
+      }));
+      retryButton.addEventListener('click', () => ensureLoaded().catch(() => {}));
+      searchForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+        if ([...query].length < 2) {
+          setStatus(searchStatus, 'short-query', 'اكتب حرفين أو أكتر للبحث.', 'Enter at least two characters to search.');
+          searchInput.focus();
+          return;
+        }
+        try {
+          await ensureLoaded();
+          setStatus(searchStatus, 'loading', 'بندور في الكتاب كله…', 'Searching the whole Bible…');
+          window.setTimeout(() => searchBible(query), 0);
+        } catch (error) { /* The localized load status explains how to retry. */ }
+      });
+      searchInput.addEventListener('input', () => {
+        searchClear.hidden = !searchInput.value;
+        if (!searchInput.value) clearSearchResults();
+      });
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.hidden = true;
+        clearSearchResults();
+        searchInput.focus();
+      });
+      searchResultsBox.addEventListener('click', (event) => {
+        const result = event.target.closest('[data-open-book]');
+        if (!result || !bible) return;
+        const targetBook = result.dataset.openBook;
+        const targetChapter = Number(result.dataset.openChapter);
+        const targetVerse = Number(result.dataset.openVerse);
+        showChapter(targetBook, targetChapter);
+        clearSearchResults();
+        requestAnimationFrame(() => {
+          const verse = document.getElementById(`bible-verse-${targetVerse}`);
+          if (!verse) return;
+          verse.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          verse.classList.add('highlight');
+          window.setTimeout(() => verse.classList.remove('highlight'), 2400);
+        });
+      });
+      function updateForLanguageChange() {
+        if (loadStatus.dataset.state === 'loading') {
+          setStatus(loadStatus, 'loading', 'بنحمّل نص الكتاب المقدس…', 'Loading the Bible text…');
+        } else if (loadStatus.dataset.state === 'error') {
+          setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع من Netlify أو من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the site on Netlify or a web server, then try again.');
+        }
+        if (searchStatus.dataset.state === 'empty') {
+          setStatus(searchStatus, 'empty', 'ما لقيناش نتيجة للكلمة دي. جرّب كلمة تانية.', 'No matches found. Try another word.');
+        } else if (searchStatus.dataset.state === 'short-query') {
+          setStatus(searchStatus, 'short-query', 'اكتب حرفين أو أكتر للبحث.', 'Enter at least two characters to search.');
+        }
+        if (!bible) return;
+        updateBookOptions();
+        updateChapterOptions();
+        renderChapter();
+        if (lastSearchResults.length) renderSearchResults();
+      }
+      new MutationObserver(updateForLanguageChange).observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-lang']
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            ensureLoaded().catch(() => {});
+          }
+        }, { rootMargin: '280px 0px' });
+        observer.observe(section);
+      } else {
+        ensureLoaded().catch(() => {});
+      }
+      if (window.location.hash === '#bible-reader') ensureLoaded().catch(() => {});
     })();
   </script>
   <script>
