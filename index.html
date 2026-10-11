@@ -1097,7 +1097,7 @@
         <div class="ai-panel-brand"><span class="ai-panel-mark" aria-hidden="true">✦</span><div><strong id="ai-title">Nashe AI</strong><small><span class="t-ar">مساعد ناشئ المنار</span><span class="t-en">Shabab Nashe2 Al Manar assistant</span></small></div></div>
         <button class="ai-close" id="ai-close" type="button" aria-label="Close chat">×</button>
       </header>
-      <div class="ai-connection" id="ai-connection" role="status" aria-live="polite"><span class="t-ar">المساعد لسه محتاج إعداد آمن من فريق الخدمة على Netlify.</span><span class="t-en">Nashe AI still needs secure setup by a ministry leader on Netlify.</span></div>
+      <div class="ai-connection" id="ai-connection" role="status" aria-live="polite"><span class="t-ar">المساعد لسه محتاج إعداد آمن من فريق الخدمة على الخادم.</span><span class="t-en">Nashe AI still needs secure server-side setup by a ministry leader.</span></div>
       <div class="ai-messages" id="ai-messages" role="log" aria-live="polite" aria-relevant="additions text" tabindex="0" aria-label="Nashe AI conversation">
         <div class="ai-message bot"><span class="t-ar">أهلًا! أنا ناشئ AI. أقدر أساعدك في أسئلة الإيمان والحياة ومعلومات ناشئ المنار. اسأل براحتك.</span><span class="t-en">Hi! I’m Nashe AI. I can help with faith, everyday questions, and Shabab Nashe2 Al Manar info. Ask away.</span></div>
         <div class="ai-message system" id="ai-setup-note"><span class="t-ar">الخدمة مش متفعّلة لسه؛ رسائلك مش هتتبعت لحد ما قائد موثوق يكمّل الإعداد.</span><span class="t-en">The service isn’t active yet; your messages won’t be sent until a trusted leader completes setup.</span></div>
@@ -1659,7 +1659,7 @@
             return bible;
           } catch (error) {
             setControlsDisabled(true);
-            setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع من Netlify أو من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the site on Netlify or a web server, then try again.');
+            setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع المنشور أو شغّله من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the published site or serve it through a web server, then try again.');
             retryButton.hidden = false;
             throw error;
           } finally {
@@ -1758,7 +1758,7 @@
         if (loadStatus.dataset.state === 'loading') {
           setStatus(loadStatus, 'loading', 'بنحمّل نص الكتاب المقدس…', 'Loading the Bible text…');
         } else if (loadStatus.dataset.state === 'error') {
-          setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع من Netlify أو من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the site on Netlify or a web server, then try again.');
+          setStatus(loadStatus, 'error', 'ما قدرناش نحمل النص. افتح الموقع المنشور أو شغّله من خادم ويب، وبعدها جرّب تاني.', 'Could not load the text. Open the published site or serve it through a web server, then try again.');
         }
         if (searchStatus.dataset.state === 'empty') {
           setStatus(searchStatus, 'empty', 'ما لقيناش نتيجة للكلمة دي. جرّب كلمة تانية.', 'No matches found. Try another word.');
@@ -1846,13 +1846,13 @@
             if (ready) {
               setStatus('ready', 'ناشئ AI جاهز للمساعدة. ما تشاركش معلومات شخصية.', 'Nashe AI is ready. Please don’t share personal information.');
             } else {
-              setStatus('', 'ناشئ AI لسه محتاج إعداد آمن من فريق الخدمة على Netlify.', 'Nashe AI still needs secure setup by a ministry leader on Netlify.');
+              setStatus('', 'ناشئ AI لسه محتاج إعداد آمن من فريق الخدمة على الخادم.', 'Nashe AI still needs secure server-side setup by a ministry leader.');
             }
           } catch (error) {
             setReady(false);
             setupNote.querySelector('.t-ar').textContent = 'الخدمة مش متاحة؛ رسائلك مش هتتبعت من الصفحة دي دلوقتي.';
             setupNote.querySelector('.t-en').textContent = 'The AI service isn’t reachable; messages won’t be sent from this page right now.';
-            setStatus('error', 'خدمة ناشئ AI مش متاحة دلوقتي. اتأكدوا إن Netlify Function منشورة.', 'Nashe AI isn’t available right now. Please check that the Netlify Function is deployed.');
+            setStatus('error', 'خدمة ناشئ AI مش متاحة دلوقتي. اتأكدوا إن خدمة المساعد منشورة.', 'Nashe AI isn’t available right now. Please check that the server function is deployed.');
           } finally {
             statusCheckInFlight = undefined;
           }
@@ -1914,7 +1914,7 @@
             if (data.code === 'AI_NOT_CONFIGURED') {
               setReady(false);
               setStatus('', 'الخدمة مش متفعّلة لسه؛ رسالتك ما اتبعتتش لمزوّد الذكاء الاصطناعي.', 'AI isn’t configured yet; your message was not sent to an AI provider.');
-              addMessage('system', language() === 'ar' ? 'لسه فريق الخدمة محتاج يكمّل إعداد ناشئ AI على Netlify. رسالتك ما اتبعتتش لمزوّد خارجي.' : 'The ministry team still needs to finish Nashe AI setup on Netlify. Your message was not sent to an external provider.');
+              addMessage('system', language() === 'ar' ? 'لسه فريق الخدمة محتاج يكمّل إعداد ناشئ AI بشكل آمن. رسالتك ما اتبعتتش لمزوّد خارجي.' : 'The ministry team still needs to finish secure Nashe AI setup. Your message was not sent to an external provider.');
             } else if (data.code === 'RATE_LIMITED') {
               addMessage('system', language() === 'ar' ? 'في رسائل كتير بسرعة. استنى دقيقة وجرب تاني.' : 'There have been too many messages too quickly. Please wait a minute and try again.');
             } else {

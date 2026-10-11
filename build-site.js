@@ -13,4 +13,4 @@ if (fs.existsSync(assetsDir)) {
   fs.cpSync(assetsDir, path.join(publishDir, 'assets'), { recursive: true });
 }
 
-console.log('Prepared the self-contained site for Netlify in dist/.');
+console.log('Prepared the site in dist/.');

@@ -1,6 +1,6 @@
 # Shabab Nashe2 Al Manar — website draft
 
-The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Serve the project through Netlify or another web server to use every feature. The styling, interactions, and logos are local; the full Bible text is bundled in `assets/bible/bible-data.json`. Opening `index.html` directly as a `file://` URL can block the browser from loading that JSON because of browser security rules.
+The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Serve the project through Cloudflare Workers, Netlify, or another web server to use every feature. The styling, interactions, and logos are local; the full Bible text is bundled in `assets/bible/bible-data.json`. Opening `index.html` directly as a `file://` URL can block the browser from loading that JSON because of browser security rules.
 
 ## Included
 
@@ -11,7 +11,7 @@ The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Serve t
 - A peaceful, no-account quiet-moment section with Matthew 11:28, a short reflection, and a question for overwhelming days.
 - Nashe2 Streaks milestone cards (1, 4, 8, and 12 meetings) with an explicitly non-competitive, shame-free message.
 - Friday QR Check-In instructions marked **Coming soon**. Attendance and personal streak tracking are not connected yet; a private backend and an identity/privacy plan are needed first.
-- Nashe AI: bilingual chat UI for faith, everyday, and ministry questions, backed by a Netlify Function that calls Google AI Studio’s Gemini Developer API. It stays disabled until a trusted leader configures the Gemini model and secret key privately in Netlify; no API key is in the client.
+- Nashe AI: bilingual chat UI for faith, everyday, and ministry questions, backed by a server-side Netlify Function or the Cloudflare Worker in `cloudflare/worker.js`. It stays disabled until a trusted leader configures the Gemini model and secret key privately in the hosting provider; no API key is in the client.
 - Mission and vision copy (draft wording for the ministry to approve).
 - Team cards for Maged (Head Leader) and Andrew (Worship Leader), with role-based intro copy and no photos.
 - Podcast episode cards for Andy & Peter (“The Fake Me”) and Nana & Gaby (“When Nobody Understands Me”), each linked to the reel assigned by the ministry.
@@ -22,9 +22,9 @@ The site is a bilingual, single-page website for Shabab Nashe2 Al Manar. Serve t
 - Footer credit: “The creations of George Sameh.”
 - A designed “Coming Soon” moments area; no placeholder photos or empty gallery boxes.
 
-## Nashe AI: Google AI Studio + Netlify setup (not active until configured)
+## Legacy Netlify setup (only if continuing to use Netlify)
 
-The chat is deliberately unavailable until a ministry leader completes these steps. The UI probes `/api/nashe-ai`; it enables sending only after the server-side function reports that the Gemini key and model are configured. A local/static preview without Netlify will say the service is not connected.
+The chat is deliberately unavailable until a ministry leader completes these steps. The UI probes `/api/nashe-ai`; it enables sending only after the server-side function reports that the Gemini key and model are configured. A local/static preview without a deployed server function will say the service is not connected.
 
 1. In Google AI Studio, choose a Gemini text model and create a Gemini API key. Review that model’s pricing, safety, and data-use terms. Google’s current pricing page shows free tiers for some models, but indicates free-tier content may be used to improve Google products; check the current terms carefully before using free access for youth chats. The system instructions in this project are best-effort guidance, not a content-moderation guarantee; decide whether provider-side moderation is needed before launch.
 2. Deploy the project to Netlify from the project root. `netlify.toml` runs `node scripts/build-site.js`, publishes only `dist/`, and deploys `netlify/functions/nashe-ai.js` as the function behind `/api/nashe-ai`.
@@ -35,6 +35,25 @@ The chat is deliberately unavailable until a ministry leader completes these ste
 5. Set provider-side spending limits and abuse controls before making the endpoint public. The function limits message sizes/history, uses a 25-second timeout, and applies an **in-memory, per-function-instance** limit of 8 requests per minute per Netlify client IP. That limiter is best-effort—not a durable/global quota—so it is not a substitute for provider-side caps or monitoring.
 
 **Never put `GEMINI_API_KEY` in `index.html`, a public environment variable, source control, or a chat message.** Only the Netlify Function reads it, using Google’s `x-goog-api-key` request header. The function does not log chat text or save it to a database; messages are kept in browser memory for the active page and sent to Google’s Gemini API when the user submits. Netlify and Google may process request data under their own terms. The interface warns users not to share identifying details and says the assistant can be wrong and is not a pastor or counselor. Do not describe the chat as confidential or as a crisis service.
+
+## Vercel setup
+
+The Vercel function is `api/nashe-ai.js`; Vercel serves it at `/api/nashe-ai`. Use Framework Preset **Other**, Root Directory `./`, Build Command `node scripts/build-site.js`, and Output Directory `dist`. The Bible JSON must stay at `assets/bible/bible-data.json`; the build script copies it into `dist/assets/bible/`.
+
+In Vercel Project Settings → Environment Variables, add `GEMINI_API_KEY` as a sensitive value (do not place it in Git or a build command) and `GEMINI_MODEL=gemini-3.8-flash`. Enable Production and Preview as needed, then redeploy after saving variables. The API key that was saved in Netlify does not automatically transfer to Vercel.
+
+## Cloudflare Workers Builds setup
+
+This repository now includes a Cloudflare Worker entry point (`cloudflare/worker.js`) and `wrangler.jsonc`. Use these values in Cloudflare **Workers Builds** (not the Pages import form):
+
+- Root directory: repository root (leave blank or `.`)
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Preview command: `npx wrangler preview`
+
+The build command prepares `dist/`; `wrangler.jsonc` serves it as static assets and routes `/api/nashe-ai` to the Cloudflare Worker. The old Netlify Function remains in place for the former Netlify deployment.
+
+The `GEMINI_API_KEY` you had saved in Netlify does not transfer automatically. In Cloudflare, add it as a **runtime Secret** named `GEMINI_API_KEY` under the Worker’s **Settings → Variables and Secrets**. Never put its value in `wrangler.jsonc`, source code, GitHub, or a build command. `GEMINI_MODEL` is set to `gemini-3.8-flash` in `wrangler.jsonc`. If you enable preview builds, configure the secret in the Preview environment too; preview variables/secrets may be separate from production.
 
 ## Before publishing
 
@@ -47,7 +66,7 @@ The chat is deliberately unavailable until a ministry leader completes these ste
 
 ## Publishing the full Bible reader
 
-To publish the reader through the existing GitHub-to-Netlify setup, commit the updated root `index.html` and the new `assets/bible/bible-data.json` file while preserving that exact folder path. `scripts/build-site.js` already copies the `assets/` folder into `dist/`, so no Netlify function or API key is needed for Bible reading/search. Netlify will rebuild after the GitHub commit if automatic deploys are enabled. When testing on your computer, use a web server; directly opening `index.html` as `file://` can block the Bible JSON request.
+To publish the reader, commit the updated root `index.html` and `assets/bible/bible-data.json` while preserving that exact folder path. `scripts/build-site.js` copies the `assets/` folder into `dist/`; neither a Bible API key nor a Bible-reading function is needed. Cloudflare or Netlify will rebuild after the GitHub commit if automatic deploys are enabled. When testing on your computer, use a web server; directly opening `index.html` as `file://` can block the Bible JSON request.
 
 ## Updating content
 
